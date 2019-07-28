@@ -1,44 +1,25 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Blockstack assignment – @kyranjamie
 
-## Available Scripts
+This assignment demonstrates a prototype application allowing users to sign their support for petitions.
 
-In the project directory, you can run:
+## Getting started
 
-### `npm start`
+```sh
+yarn && yarn start
+``` 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Scope
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Simple app allowing Blockstack IDs to auth and show theirr support for petitions.
 
-### `npm test`
+## Implementation
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Used `create-react-app` to generate a boilerplate application, opting to use TypeScript. I'm much more familiar with Angular but, given Blockstack uses React, it seemed the more appropriate choice.
 
-### `npm run build`
+I utilised the [Ant Design component library](https://ant.design/). 
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Some decisions were made to limit the scope of this app. For example, I decided to keep state within presentational component, namely `src/components/petitions.tsx` and not use a state management library (redux).
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The interaction with Blockstack in this app is user auth. My initial plan was to use Gaia storage to persist petitions a given user has signed. Judging by the docs, this should be possible by either creating a name-prefixed json file for each petition and reading through the file list, or appending/overwriting a single file, and rendering its contents.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I ran into some issues setting up Gaia. Specifially, [step 6 of this guide](https://docs.blockstack.org/storage/hello-hub-choice.html), I was never able to reach the option where you configure the hub (owing to the lack of a "deny" option when either using an existing or new ID). Thus I was unable to persist any data. Instead, the app uses mocked data.
